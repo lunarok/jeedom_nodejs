@@ -17,7 +17,7 @@ else
 fi
 
 
-if [[ $actual -ge 8 ]]
+if [ $actual -ge 8 ]
 then
   echo "Ok, version suffisante";
 else
@@ -26,7 +26,7 @@ else
   sudo apt-get -y --purge autoremove nodejs npm
   arch=`arch`;
   echo 30 > /tmp/${2}_dep
-  if [[ $arch == "armv6l" ]]
+  if [ $arch == "armv6l" ]
   then
     echo "Raspberry 1 détecté, utilisation du paquet pour armv6"
     sudo rm /etc/apt/sources.list.d/nodesource.list
