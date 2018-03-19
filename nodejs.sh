@@ -16,6 +16,10 @@ else
   echo "Nodejs non installé"
 fi
 
+apt-get -y install lsb-release
+if [ `lsb_release -c -s` == "jessie" ]; then
+  echo "### WARNING - Debian Jessie détectée, cette version doit être migrée en Debian Stretch pour obtenir du support sur ce plugin"
+fi
 
 if [ $actual -ge 8 ]
 then
@@ -26,11 +30,6 @@ else
   sudo apt-get -y --purge autoremove nodejs npm
   arch=`arch`;
   echo 30 > /tmp/${2}_dep
-  if [ -f /etc/apt/sources.list.d/jeedom.list ]
-  then
-    echo "Suppression repo obsolète jeedom avec nodejs non signé"
-    sudo rm /etc/apt/sources.list.d/jeedom.list
-  fi
   if [ $arch == "armv6l" ]
   then
     echo "Raspberry 1 détecté, utilisation du paquet pour armv6"
