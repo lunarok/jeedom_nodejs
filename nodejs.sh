@@ -16,7 +16,8 @@ else
   echo "Nodejs non installé"
 fi
 
-apt-get -y install lsb-release
+sudo apt-get update
+sudo apt-get -y install lsb-release
 if [ `lsb_release -c -s` == "jessie" ]; then
   echo "### WARNING - Debian Jessie détectée, cette version doit être migrée en Debian Stretch pour obtenir du support sur ce plugin ###"
 fi
