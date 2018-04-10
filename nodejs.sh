@@ -20,10 +20,6 @@ sudo apt-get update
 sudo apt-get -y install lsb-release
 release=$( lsb_release -c -s )
 
-if [ $release == "jessie" ]; then
-  echo "### WARNING - Debian Jessie détectée, cette version doit être migrée en Debian Stretch pour obtenir du support sur ce plugin ###"
-fi
-
 if [ $actual -ge 8 ]
 then
   echo "Ok, version suffisante";
