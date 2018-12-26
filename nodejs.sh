@@ -1,13 +1,18 @@
 #!/bin/bash
 cd $1
-echo 10 > /tmp/${2}_dep
+if [[ ${2} == *"dependancy"* ]]; then
+  LOG=${2}
+else
+  LOG='/tmp/${2}_dep'
+fi
+echo 10 > $LOG
 DIRECTORY="/var/www"
 if [ ! -d "$DIRECTORY" ]; then
   echo "Création du home www-data pour npm"
   sudo mkdir $DIRECTORY
 fi
 sudo chown -R www-data $DIRECTORY
-echo 20 > /tmp/${2}_dep
+echo 20 > $LOG
 if [ -x /usr/bin/nodejs ]; then
   actual=`nodejs -v | awk -F v '{ print $2 }' | awk -F . '{ print $1 }'`;
   echo "Version actuelle : ${actual}"
@@ -28,7 +33,7 @@ else
   echo "Suppression du Nodejs existant et installation du paquet recommandé"
   sudo apt-get -y --purge autoremove nodejs npm
   arch=`arch`;
-  echo 30 > /tmp/${2}_dep
+  echo 30 > $LOG
   if [ $arch == "armv6l" ]
   then
     echo "Raspberry 1 détecté, utilisation du paquet pour armv6"
@@ -46,10 +51,10 @@ else
   echo "Version actuelle : ${new}"
 fi
 
-echo 70 > /tmp/${2}_dep
+echo 70 > $LOG
 
 sudo rm -rf node_modules
 
-echo 80 > /tmp/${2}_dep
+echo 80 > $LOG
 npm install
 sudo chown -R www-data node_modules
