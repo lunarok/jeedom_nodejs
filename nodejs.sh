@@ -1,6 +1,6 @@
 #!/bin/bash
 cd $1
-if [ ${2} == *"dependancy" ]; then
+if [ "$2" == *"dependancy" ]; then
   LOG=${2}
 else
   LOG='/tmp/${2}_dep'
