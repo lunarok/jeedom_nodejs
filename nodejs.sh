@@ -24,8 +24,9 @@ fi
 sudo apt-get update
 sudo apt-get -y install lsb-release
 release=$( lsb_release -c -s )
+version=14
 
-if [ $actual -ge 12 ]
+if [[ $actual -ge $version ]]
 then
   echo "Ok, version suffisante";
 else
@@ -44,7 +45,7 @@ else
     rm node_latest_armhf.deb
   else
     echo "Utilisation du dépot officiel"
-    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
     sudo apt-get install -y nodejs
   fi
   new=`nodejs -v`;
