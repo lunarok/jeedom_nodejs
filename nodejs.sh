@@ -35,7 +35,7 @@ else
   sudo apt-get -y --purge autoremove nodejs npm
   arch=`arch`;
   echo 30 > $LOG
-  if [ $arch == "armv6l" ]
+  if [ "$arch" == "armv6l" ]
   then
     echo "Raspberry 1 détecté, utilisation du paquet pour armv6"
     sudo rm /etc/apt/sources.list.d/nodesource.list
